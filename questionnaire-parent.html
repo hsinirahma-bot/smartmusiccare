@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questionnaire parent — SmartMusicCare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="questionnaire-parent.css" />
+</head>
+<body>
+
+  <div class="stage" aria-hidden="true">
+    <div class="sky"></div>
+    <div class="clouds-layer" id="cloudsLayer"></div>
+    <div class="balloons-layer" id="balloonsLayer"></div>
+    <div class="notes-layer" id="notesLayer"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+  </div>
+
+  <main class="page">
+
+    <header class="page-header">
+      <button class="btn-back" id="backHome" aria-label="Retour à l'accueil">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+        </svg>
+      </button>
+      <div class="header-text">
+        <h1>Questionnaire parent</h1>
+        <p>Aidons-nous à mieux comprendre votre enfant</p>
+      </div>
+    </header>
+
+    <div class="progress-wrap">
+      <div class="progress-track">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="progress-labels">
+        <span class="step-label active" data-step="1">1. Infos</span>
+        <span class="step-label" data-step="2">2. Besoins</span>
+        <span class="step-label" data-step="3">3. Musique</span>
+        <span class="step-label" data-step="4">4. Objectifs</span>
+      </div>
+    </div>
+
+    <form id="parentForm" novalidate>
+
+      <!-- ÉTAPE 1 -->
+      <section class="step active" data-step="1">
+        <h2 class="step-title"><span class="step-emoji">🌱</span> Parlez-nous de votre enfant</h2>
+
+        <div class="field">
+          <label class="field-label">Quel est l'âge de votre enfant ? <span class="required">*</span></label>
+          <div class="options options-3">
+            <label class="option"><input type="radio" name="age_range" value="4-6" required>
+              <span class="option-content"><span class="option-emoji">🧒</span><span class="option-text">4 à 6 ans</span></span>
+            </label>
+            <label class="option"><input type="radio" name="age_range" value="7-9" required>
+              <span class="option-content"><span class="option-emoji">👦</span><span class="option-text">7 à 9 ans</span></span>
+            </label>
+            <label class="option"><input type="radio" name="age_range" value="10-12" required>
+              <span class="option-content"><span class="option-emoji">🧑</span><span class="option-text">10 à 12 ans</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Le diagnostic de trouble du spectre de l'autisme (TSA) est-il posé ? <span class="required">*</span></label>
+          <div class="options options-3">
+            <label class="option"><input type="radio" name="diagnosis" value="confirmed" required>
+              <span class="option-content"><span class="option-emoji">✅</span><span class="option-text">Oui, confirmé</span></span>
+            </label>
+            <label class="option"><input type="radio" name="diagnosis" value="in_progress" required>
+              <span class="option-content"><span class="option-emoji">⏳</span><span class="option-text">En cours d'évaluation</span></span>
+            </label>
+            <label class="option"><input type="radio" name="diagnosis" value="unknown" required>
+              <span class="option-content"><span class="option-emoji">❓</span><span class="option-text">Je préfère ne pas le dire</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Comment votre enfant communique-t-il le plus souvent ? <span class="required">*</span></label>
+          <div class="options options-2">
+            <label class="option"><input type="radio" name="communication" value="speech" required>
+              <span class="option-content"><span class="option-emoji">💬</span><span class="option-text">Avec des mots</span></span>
+            </label>
+            <label class="option"><input type="radio" name="communication" value="gestures" required>
+              <span class="option-content"><span class="option-emoji">👋</span><span class="option-text">Avec des gestes</span></span>
+            </label>
+            <label class="option"><input type="radio" name="communication" value="pictograms" required>
+              <span class="option-content"><span class="option-emoji">🖼️</span><span class="option-text">Avec des images / pictogrammes</span></span>
+            </label>
+            <label class="option"><input type="radio" name="communication" value="aac" required>
+              <span class="option-content"><span class="option-emoji">🗣️</span><span class="option-text">Avec un outil de communication</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Pendant une activité, votre enfant est plutôt… <span class="required">*</span></label>
+          <div class="options options-3">
+            <label class="option"><input type="radio" name="autonomy" value="autonomous" required>
+              <span class="option-content"><span class="option-emoji">🌟</span><span class="option-text">Autonome</span></span>
+            </label>
+            <label class="option"><input type="radio" name="autonomy" value="with_help" required>
+              <span class="option-content"><span class="option-emoji">🤝</span><span class="option-text">A besoin d'un peu d'aide</span></span>
+            </label>
+            <label class="option"><input type="radio" name="autonomy" value="with_support" required>
+              <span class="option-content"><span class="option-emoji">💞</span><span class="option-text">A besoin de beaucoup d'accompagnement</span></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- ÉTAPE 2 -->
+      <section class="step" data-step="2">
+        <h2 class="step-title"><span class="step-emoji">💡</span> Comment pouvons-nous aider votre enfant ?</h2>
+
+        <div class="field">
+          <label class="field-label">Quelle est la priorité pour votre enfant en ce moment ? <span class="required">*</span></label>
+          <div class="options options-2">
+            <label class="option"><input type="radio" name="priority_need" value="attention" required>
+              <span class="option-content"><span class="option-emoji">👀</span><span class="option-text">Rester attentif</span></span>
+            </label>
+            <label class="option"><input type="radio" name="priority_need" value="engagement" required>
+              <span class="option-content"><span class="option-emoji">🎯</span><span class="option-text">Rester engagé dans une activité</span></span>
+            </label>
+            <label class="option"><input type="radio" name="priority_need" value="interaction" required>
+              <span class="option-content"><span class="option-emoji">🤗</span><span class="option-text">Interagir avec les autres</span></span>
+            </label>
+            <label class="option"><input type="radio" name="priority_need" value="communication" required>
+              <span class="option-content"><span class="option-emoji">💬</span><span class="option-text">Communiquer</span></span>
+            </label>
+            <label class="option"><input type="radio" name="priority_need" value="expression" required>
+              <span class="option-content"><span class="option-emoji">🎨</span><span class="option-text">Exprimer ses choix</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Votre enfant arrive-t-il à rester concentré sur une activité ? <span class="required">*</span></label>
+          <div class="options options-2">
+            <label class="option"><input type="radio" name="engagement_level" value="easy" required>
+              <span class="option-content"><span class="option-emoji">😊</span><span class="option-text">Oui, facilement</span></span>
+            </label>
+            <label class="option"><input type="radio" name="engagement_level" value="with_reminders" required>
+              <span class="option-content"><span class="option-emoji">🙂</span><span class="option-text">Avec quelques rappels</span></span>
+            </label>
+            <label class="option"><input type="radio" name="engagement_level" value="difficult" required>
+              <span class="option-content"><span class="option-emoji">😕</span><span class="option-text">C'est difficile</span></span>
+            </label>
+            <label class="option"><input type="radio" name="engagement_level" value="variable" required>
+              <span class="option-content"><span class="option-emoji">🎢</span><span class="option-text">Cela dépend des activités</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Comment réagit votre enfant face à un nouvel exercice ? <span class="required">*</span></label>
+          <div class="options options-2">
+            <label class="option"><input type="radio" name="new_task_reaction" value="curious" required>
+              <span class="option-content"><span class="option-emoji">🤩</span><span class="option-text">Il est curieux</span></span>
+            </label>
+            <label class="option"><input type="radio" name="new_task_reaction" value="hesitant" required>
+              <span class="option-content"><span class="option-emoji">😐</span><span class="option-text">Il hésite</span></span>
+            </label>
+            <label class="option"><input type="radio" name="new_task_reaction" value="refuses" required>
+              <span class="option-content"><span class="option-emoji">🙅</span><span class="option-text">Il refuse parfois</span></span>
+            </label>
+            <label class="option"><input type="radio" name="new_task_reaction" value="needs_help" required>
+              <span class="option-content"><span class="option-emoji">🆘</span><span class="option-text">Il a besoin d'aide</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Votre enfant préfère-t-il… <span class="required">*</span></label>
+          <div class="options options-2">
+            <label class="option"><input type="radio" name="social_preference" value="individual" required>
+              <span class="option-content"><span class="option-emoji">🧘</span><span class="option-text">Jouer seul</span></span>
+            </label>
+            <label class="option"><input type="radio" name="social_preference" value="with_adult" required>
+              <span class="option-content"><span class="option-emoji">👨‍👩‍👧</span><span class="option-text">Jouer avec un adulte</span></span>
+            </label>
+            <label class="option"><input type="radio" name="social_preference" value="group" required>
+              <span class="option-content"><span class="option-emoji">👫</span><span class="option-text">Jouer en groupe</span></span>
+            </label>
+            <label class="option"><input type="radio" name="social_preference" value="variable" required>
+              <span class="option-content"><span class="option-emoji">🔀</span><span class="option-text">Cela dépend</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Votre enfant est-il sensible aux bruits forts ? <span class="required">*</span></label>
+          <div class="options options-2">
+            <label class="option"><input type="radio" name="auditory_sensitivity" value="yes" required>
+              <span class="option-content"><span class="option-emoji">😣</span><span class="option-text">Oui, cela le gêne</span></span>
+            </label>
+            <label class="option"><input type="radio" name="auditory_sensitivity" value="no" required>
+              <span class="option-content"><span class="option-emoji">😌</span><span class="option-text">Non, cela ne le gêne pas</span></span>
+            </label>
+            <label class="option"><input type="radio" name="auditory_sensitivity" value="uncertain" required>
+              <span class="option-content"><span class="option-emoji">🤔</span><span class="option-text">Je ne sais pas</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Comment réagit-il aux sons forts ? <span class="required">*</span></label>
+          <div class="options options-2">
+            <label class="option"><input type="radio" name="loud_sound_reaction" value="likes" required>
+              <span class="option-content"><span class="option-emoji">🎉</span><span class="option-text">Il les aime</span></span>
+            </label>
+            <label class="option"><input type="radio" name="loud_sound_reaction" value="tolerates" required>
+              <span class="option-content"><span class="option-emoji">😐</span><span class="option-text">Il les tolère</span></span>
+            </label>
+            <label class="option"><input type="radio" name="loud_sound_reaction" value="avoids" required>
+              <span class="option-content"><span class="option-emoji">😖</span><span class="option-text">Il les évite</span></span>
+            </label>
+            <label class="option"><input type="radio" name="loud_sound_reaction" value="bothered" required>
+              <span class="option-content"><span class="option-emoji">😫</span><span class="option-text">Cela peut le gêner</span></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- ÉTAPE 3 -->
+      <section class="step" data-step="3">
+        <h2 class="step-title"><span class="step-emoji">🎵</span> La musique et votre enfant</h2>
+
+        <div class="field">
+          <label class="field-label">Votre enfant aime-t-il écouter de la musique ? <span class="required">*</span></label>
+          <div class="options options-4">
+            <label class="option"><input type="radio" name="music_liking" value="much" required>
+              <span class="option-content"><span class="option-emoji">😍</span><span class="option-text">Beaucoup</span></span>
+            </label>
+            <label class="option"><input type="radio" name="music_liking" value="little" required>
+              <span class="option-content"><span class="option-emoji">🙂</span><span class="option-text">Un peu</span></span>
+            </label>
+            <label class="option"><input type="radio" name="music_liking" value="rarely" required>
+              <span class="option-content"><span class="option-emoji">😐</span><span class="option-text">Rarement</span></span>
+            </label>
+            <label class="option"><input type="radio" name="music_liking" value="never" required>
+              <span class="option-content"><span class="option-emoji">🙁</span><span class="option-text">Pas du tout</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Quel type de musique préfère-t-il ? (plusieurs choix possibles) <span class="required">*</span></label>
+          <div class="options options-2">
+            <label class="option"><input type="checkbox" name="music_types" value="soft">
+              <span class="option-content"><span class="option-emoji">🌙</span><span class="option-text">Musique douce</span></span>
+            </label>
+            <label class="option"><input type="checkbox" name="music_types" value="rhythmic">
+              <span class="option-content"><span class="option-emoji">🥁</span><span class="option-text">Musique rythmée</span></span>
+            </label>
+            <label class="option"><input type="checkbox" name="music_types" value="instrumental">
+              <span class="option-content"><span class="option-emoji">🎻</span><span class="option-text">Musique instrumentale</span></span>
+            </label>
+            <label class="option"><input type="checkbox" name="music_types" value="songs">
+              <span class="option-content"><span class="option-emoji">🎤</span><span class="option-text">Chansons</span></span>
+            </label>
+            <label class="option"><input type="checkbox" name="music_types" value="nature">
+              <span class="option-content"><span class="option-emoji">🌿</span><span class="option-text">Sons de la nature</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Quels instruments votre enfant aime-t-il ? (plusieurs choix possibles) <span class="required">*</span></label>
+          <div class="options options-2">
+            <label class="option"><input type="checkbox" name="instruments" value="piano">
+              <span class="option-content"><span class="option-emoji">🎹</span><span class="option-text">Piano</span></span>
+            </label>
+            <label class="option"><input type="checkbox" name="instruments" value="guitar">
+              <span class="option-content"><span class="option-emoji">🎸</span><span class="option-text">Guitare</span></span>
+            </label>
+            <label class="option"><input type="checkbox" name="instruments" value="drum">
+              <span class="option-content"><span class="option-emoji">🥁</span><span class="option-text">Tambour</span></span>
+            </label>
+            <label class="option"><input type="checkbox" name="instruments" value="flute">
+              <span class="option-content"><span class="option-emoji">🪈</span><span class="option-text">Flûte</span></span>
+            </label>
+            <label class="option"><input type="checkbox" name="instruments" value="voice">
+              <span class="option-content"><span class="option-emoji">🎤</span><span class="option-text">La voix</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Quel rythme préfère-t-il ? <span class="required">*</span></label>
+          <div class="options options-4">
+            <label class="option"><input type="radio" name="tempo_pref" value="slow" required>
+              <span class="option-content"><span class="option-emoji">🐢</span><span class="option-text">Lent</span></span>
+            </label>
+            <label class="option"><input type="radio" name="tempo_pref" value="medium" required>
+              <span class="option-content"><span class="option-emoji">🚶</span><span class="option-text">Moyen</span></span>
+            </label>
+            <label class="option"><input type="radio" name="tempo_pref" value="fast" required>
+              <span class="option-content"><span class="option-emoji">🐇</span><span class="option-text">Rapide</span></span>
+            </label>
+            <label class="option"><input type="radio" name="tempo_pref" value="unknown" required>
+              <span class="option-content"><span class="option-emoji">🤷</span><span class="option-text">Je ne sais pas</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Que préfère-t-il faire avec la musique ? (plusieurs choix possibles) <span class="required">*</span></label>
+          <div class="options options-2">
+            <label class="option"><input type="checkbox" name="participation_modes" value="listen">
+              <span class="option-content"><span class="option-emoji">👂</span><span class="option-text">Écouter</span></span>
+            </label>
+            <label class="option"><input type="checkbox" name="participation_modes" value="sing">
+              <span class="option-content"><span class="option-emoji">🎤</span><span class="option-text">Chanter</span></span>
+            </label>
+            <label class="option"><input type="checkbox" name="participation_modes" value="reproduce_rhythm">
+              <span class="option-content"><span class="option-emoji">👏</span><span class="option-text">Reproduire un rythme</span></span>
+            </label>
+            <label class="option"><input type="checkbox" name="participation_modes" value="play_instrument">
+              <span class="option-content"><span class="option-emoji">🎺</span><span class="option-text">Jouer d'un instrument</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Y a-t-il des sons à éviter absolument ? (facultatif)</label>
+          <input type="text" class="text-input" name="sounds_to_avoid" placeholder="Ex : sirènes, bruits stridents, alarmes…">
+        </div>
+      </section>
+
+      <!-- ÉTAPE 4 -->
+      <section class="step" data-step="4">
+        <h2 class="step-title"><span class="step-emoji">🎯</span> Les objectifs avec Milo</h2>
+
+        <div class="field">
+          <label class="field-label">Choisissez vos objectifs prioritaires (1 ou 2) <span class="required">*</span></label>
+          <div class="options options-2" id="goalsOptions">
+            <label class="option"><input type="checkbox" name="goals" value="participation">
+              <span class="option-content"><span class="option-emoji">🌈</span><span class="option-text">Améliorer la participation</span></span>
+            </label>
+            <label class="option"><input type="checkbox" name="goals" value="attention">
+              <span class="option-content"><span class="option-emoji">👀</span><span class="option-text">Encourager l'attention auditive</span></span>
+            </label>
+            <label class="option"><input type="checkbox" name="goals" value="imitation">
+              <span class="option-content"><span class="option-emoji">🪞</span><span class="option-text">Encourager l'imitation</span></span>
+            </label>
+            <label class="option"><input type="checkbox" name="goals" value="exchange">
+              <span class="option-content"><span class="option-emoji">🔄</span><span class="option-text">Favoriser les échanges</span></span>
+            </label>
+            <label class="option"><input type="checkbox" name="goals" value="expression">
+              <span class="option-content"><span class="option-emoji">✨</span><span class="option-text">Encourager l'expression des choix</span></span>
+            </label>
+          </div>
+          <p class="hint" id="goalHint">0 / 2 objectifs sélectionnés</p>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Une observation ou recommandation à ajouter ? (facultatif)</label>
+          <textarea class="text-input" name="pro_note" rows="4" placeholder="Ex : Enfant calme, réagit bien aux sons doux…"></textarea>
+        </div>
+
+        <div class="notice">
+          <p>🔒 Les informations sont anonymisées. Aucun nom, adresse ou donnée médicale détaillée n'est demandé. Ce questionnaire n'établit pas de diagnostic médical.</p>
+        </div>
+      </section>
+
+      <!-- Navigation -->
+      <div class="form-nav">
+        <button type="button" class="btn-nav btn-prev" id="prevBtn" disabled>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+          </svg>
+          Précédent
+        </button>
+        <button type="button" class="btn-nav btn-next" id="nextBtn">
+          Suivant
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M4 11h12.17l-5.59-5.59L12 4l8 8-8 8-1.41-1.41L16.17 13H4v-2z"/>
+          </svg>
+        </button>
+        <button type="button" class="btn-nav btn-submit" id="submitBtn" style="display:none;">
+          ✅ Enregistrer et continuer
+        </button>
+      </div>
+
+      <p class="error-msg" id="errorMsg" role="alert"></p>
+    </form>
+
+  </main>
+
+  <script src="questionnaire-parent.js"></script>
+</body>
+</html>

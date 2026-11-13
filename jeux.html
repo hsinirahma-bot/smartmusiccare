@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Les jeux de Milo — SmartMusicCare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="jeux.css" />
+</head>
+<body>
+
+  <!-- Décor de fond -->
+  <div class="stage" aria-hidden="true">
+    <div class="sky"></div>
+    <div class="sun"><div class="sun-rays"></div></div>
+    <svg class="rainbow" viewBox="0 0 800 400" preserveAspectRatio="xMidYMax meet">
+      <path d="M40 400 A360 360 0 0 1 760 400" fill="none" stroke="#ff8fab" stroke-width="20" opacity="0.5"/>
+      <path d="M80 400 A320 320 0 0 1 720 400" fill="none" stroke="#ffe08a" stroke-width="20" opacity="0.5"/>
+      <path d="M120 400 A280 280 0 0 1 680 400" fill="none" stroke="#a8f0b8" stroke-width="20" opacity="0.5"/>
+      <path d="M160 400 A240 240 0 0 1 640 400" fill="none" stroke="#8be3ff" stroke-width="20" opacity="0.5"/>
+      <path d="M200 400 A200 200 0 0 1 600 400" fill="none" stroke="#c3b5ff" stroke-width="20" opacity="0.5"/>
+    </svg>
+    <div class="clouds-layer" id="cloudsLayer"></div>
+    <div class="balloons-layer" id="balloonsLayer"></div>
+    <div class="notes-layer" id="notesLayer"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+  </div>
+
+  <main class="page">
+
+    <!-- En-tête -->
+    <header class="page-header">
+      <button class="btn-back" id="backHome" aria-label="Retour à l'accueil">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+        </svg>
+      </button>
+      <div class="header-text">
+        <h1>Les jeux de Milo 🎮</h1>
+        <p id="profileLabel">Aucun profil actif</p>
+      </div>
+    </header>
+
+    <!-- Zone Milo -->
+    <section class="milo-zone">
+      <div class="milo" id="milo">
+        <svg viewBox="0 0 240 260" width="140" height="150" class="milo-svg">
+          <defs>
+            <radialGradient id="furGrad" cx="45%" cy="35%" r="70%">
+              <stop offset="0%"  stop-color="#e0b07a"/>
+              <stop offset="60%" stop-color="#b87d4b"/>
+              <stop offset="100%" stop-color="#8c5a2f"/>
+            </radialGradient>
+            <radialGradient id="innerEarGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"  stop-color="#ffd1dc"/>
+              <stop offset="100%" stop-color="#ff9eb5"/>
+            </radialGradient>
+            <radialGradient id="muzzleGrad" cx="50%" cy="40%" r="60%">
+              <stop offset="0%"  stop-color="#f5deb3"/>
+              <stop offset="100%" stop-color="#e6c894"/>
+            </radialGradient>
+            <radialGradient id="bellyGrad" cx="50%" cy="40%" r="60%">
+              <stop offset="0%"  stop-color="#f5deb3"/>
+              <stop offset="100%" stop-color="#e6c894"/>
+            </radialGradient>
+            <radialGradient id="cheekGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"  stop-color="#ff9db1" stop-opacity="0.85"/>
+              <stop offset="100%" stop-color="#ff9db1" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="120" cy="248" rx="70" ry="10" fill="rgba(31,45,61,0.15)"/>
+          <g class="ear-left"><circle cx="62" cy="70" r="32" fill="url(#furGrad)"/><circle cx="62" cy="70" r="18" fill="url(#innerEarGrad)"/></g>
+          <g class="ear-right"><circle cx="178" cy="70" r="32" fill="url(#furGrad)"/><circle cx="178" cy="70" r="18" fill="url(#innerEarGrad)"/></g>
+          <circle cx="120" cy="115" r="78" fill="url(#furGrad)"/>
+          <circle cx="68" cy="140" r="16" fill="url(#cheekGrad)"/>
+          <circle cx="172" cy="140" r="16" fill="url(#cheekGrad)"/>
+          <ellipse cx="120" cy="140" rx="42" ry="32" fill="url(#muzzleGrad)"/>
+          <g class="eyes">
+            <ellipse cx="90" cy="108" rx="10" ry="12" fill="#2c1e12"/>
+            <ellipse cx="150" cy="108" rx="10" ry="12" fill="#2c1e12"/>
+            <circle cx="93" cy="104" r="3.5" fill="#ffffff"/>
+            <circle cx="153" cy="104" r="3.5" fill="#ffffff"/>
+          </g>
+          <ellipse cx="120" cy="132" rx="10" ry="8" fill="#3d2818"/>
+          <ellipse cx="117" cy="129" rx="3" ry="2" fill="#7a5a3a" opacity="0.8"/>
+          <path d="M108 148 Q120 160 132 148" stroke="#3d2818" stroke-width="3.5" fill="none" stroke-linecap="round" class="smile"/>
+          <ellipse cx="120" cy="215" rx="62" ry="42" fill="url(#furGrad)"/>
+          <ellipse cx="120" cy="218" rx="34" ry="26" fill="url(#bellyGrad)"/>
+          <g class="arm-left-group"><ellipse cx="62" cy="205" rx="20" ry="16" fill="url(#furGrad)"/></g>
+          <g class="arm-right-group"><ellipse cx="178" cy="205" rx="20" ry="16" fill="url(#furGrad)"/></g>
+          <path d="M50 100 Q50 50 120 50 Q190 50 190 100" stroke="#ff6b9d" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <rect x="38" y="95" width="18" height="30" rx="9" fill="#ff6b9d"/>
+          <rect x="184" y="95" width="18" height="30" rx="9" fill="#ff6b9d"/>
+        </svg>
+      </div>
+      <div class="speech" id="speech">
+        <span id="speechText">Choisis ton jeu préféré !</span>
+      </div>
+    </section>
+
+    <!-- Recommandation Milo -->
+    <div class="recommendation" id="recommendation" hidden>
+      <div class="reco-badge">⭐ Recommandé pour toi</div>
+      <p class="reco-text" id="recoText">Le jeu <strong>Chef d'orchestre</strong> te convient bien !</p>
+    </div>
+
+    <!-- Grille des jeux -->
+    <section class="games-grid" id="gamesGrid">
+
+      <!-- Jeu 1 : Chef d'orchestre -->
+      <button class="game-card" data-game="chef-orchestre" id="card-chef">
+        <div class="game-badge">⭐</div>
+        <div class="game-visual">🎼</div>
+        <h2 class="game-title">Chef d'orchestre</h2>
+        <p class="game-subtitle">Reproduis mon rythme !</p>
+        <div class="game-tags">
+          <span class="tag tag-attention">👀 Attention</span>
+          <span class="tag tag-imitation">🪞 Imitation</span>
+        </div>
+        <div class="game-cta">
+          <span>Jouer</span>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </button>
+
+      <!-- Jeu 2 : Détective musical -->
+      <button class="game-card" data-game="detective" id="card-detective">
+        <div class="game-badge">⭐</div>
+        <div class="game-visual">🔍</div>
+        <h2 class="game-title">Détective musical</h2>
+        <p class="game-subtitle">Trouve le son mystère !</p>
+        <div class="game-tags">
+          <span class="tag tag-attention">👀 Attention</span>
+          <span class="tag tag-expression">✨ Choix</span>
+        </div>
+        <div class="game-cta">
+          <span>Jouer</span>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </button>
+
+      <!-- Jeu 3 : Dialogue musical -->
+      <button class="game-card" data-game="dialogue" id="card-dialogue">
+        <div class="game-badge">⭐</div>
+        <div class="game-visual">💬</div>
+        <h2 class="game-title">Dialogue musical</h2>
+        <p class="game-subtitle">À toi, à moi !</p>
+        <div class="game-tags">
+          <span class="tag tag-interaction">🤝 Interaction</span>
+          <span class="tag tag-engagement">🎯 Engagement</span>
+        </div>
+        <div class="game-cta">
+          <span>Jouer</span>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </button>
+
+    </section>
+
+    <!-- Message si pas de profil -->
+    <div class="no-profile" id="noProfile" hidden>
+      <div class="no-profile-icon">🔒</div>
+      <h2>Un adulte doit d'abord créer ton profil</h2>
+      <p>Demande à un parent ou à un professionnel de remplir le questionnaire.</p>
+      <button class="btn-go-profile" id="goProfileBtn">📝 Créer mon profil</button>
+    </div>
+
+  </main>
+
+  <script src="jeux.js"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le Chef d'orchestre — SmartMusicCare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="jeu-chef-orchestre.css" />
+</head>
+<body>
+
+  <!-- Décor de fond -->
+  <div class="stage" aria-hidden="true">
+    <div class="sky"></div>
+    <div class="sun"><div class="sun-rays"></div></div>
+    <div class="clouds-layer" id="cloudsLayer"></div>
+    <div class="balloons-layer" id="balloonsLayer"></div>
+    <div class="notes-layer" id="notesLayer"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+  </div>
+
+  <main class="page">
+
+    <!-- En-tête -->
+    <header class="page-header">
+      <button class="btn-back" id="backGames" aria-label="Retour aux jeux">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+        </svg>
+      </button>
+      <div class="header-text">
+        <h1>🎼 Chef d'orchestre</h1>
+        <p id="profileLabel">Profil actif</p>
+      </div>
+      <div class="level-badge" id="levelBadge">Niveau 1</div>
+    </header>
+
+    <!-- Zone Milo -->
+    <section class="milo-zone">
+      <div class="milo" id="milo">
+        <svg viewBox="0 0 240 260" width="150" height="160" class="milo-svg">
+          <defs>
+            <radialGradient id="furGrad" cx="45%" cy="35%" r="70%">
+              <stop offset="0%"  stop-color="#e0b07a"/>
+              <stop offset="60%" stop-color="#b87d4b"/>
+              <stop offset="100%" stop-color="#8c5a2f"/>
+            </radialGradient>
+            <radialGradient id="innerEarGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"  stop-color="#ffd1dc"/>
+              <stop offset="100%" stop-color="#ff9eb5"/>
+            </radialGradient>
+            <radialGradient id="muzzleGrad" cx="50%" cy="40%" r="60%">
+              <stop offset="0%"  stop-color="#f5deb3"/>
+              <stop offset="100%" stop-color="#e6c894"/>
+            </radialGradient>
+            <radialGradient id="bellyGrad" cx="50%" cy="40%" r="60%">
+              <stop offset="0%"  stop-color="#f5deb3"/>
+              <stop offset="100%" stop-color="#e6c894"/>
+            </radialGradient>
+            <radialGradient id="cheekGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"  stop-color="#ff9db1" stop-opacity="0.85"/>
+              <stop offset="100%" stop-color="#ff9db1" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="120" cy="248" rx="70" ry="10" fill="rgba(31,45,61,0.15)"/>
+          <g class="ear-left"><circle cx="62" cy="70" r="32" fill="url(#furGrad)"/><circle cx="62" cy="70" r="18" fill="url(#innerEarGrad)"/></g>
+          <g class="ear-right"><circle cx="178" cy="70" r="32" fill="url(#furGrad)"/><circle cx="178" cy="70" r="18" fill="url(#innerEarGrad)"/></g>
+          <circle cx="120" cy="115" r="78" fill="url(#furGrad)"/>
+          <circle cx="68" cy="140" r="16" fill="url(#cheekGrad)"/>
+          <circle cx="172" cy="140" r="16" fill="url(#cheekGrad)"/>
+          <ellipse cx="120" cy="140" rx="42" ry="32" fill="url(#muzzleGrad)"/>
+          <g class="eyes">
+            <ellipse cx="90" cy="108" rx="10" ry="12" fill="#2c1e12"/>
+            <ellipse cx="150" cy="108" rx="10" ry="12" fill="#2c1e12"/>
+            <circle cx="93" cy="104" r="3.5" fill="#ffffff"/>
+            <circle cx="153" cy="104" r="3.5" fill="#ffffff"/>
+          </g>
+          <ellipse cx="120" cy="132" rx="10" ry="8" fill="#3d2818"/>
+          <ellipse cx="117" cy="129" rx="3" ry="2" fill="#7a5a3a" opacity="0.8"/>
+          <path d="M108 148 Q120 160 132 148" stroke="#3d2818" stroke-width="3.5" fill="none" stroke-linecap="round" class="smile"/>
+          <ellipse cx="120" cy="215" rx="62" ry="42" fill="url(#furGrad)"/>
+          <ellipse cx="120" cy="218" rx="34" ry="26" fill="url(#bellyGrad)"/>
+          <g class="arm-left-group"><ellipse cx="62" cy="205" rx="20" ry="16" fill="url(#furGrad)"/></g>
+          <g class="arm-right-group"><ellipse cx="178" cy="205" rx="20" ry="16" fill="url(#furGrad)"/></g>
+          <path d="M50 100 Q50 50 120 50 Q190 50 190 100" stroke="#ff6b9d" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <rect x="38" y="95" width="18" height="30" rx="9" fill="#ff6b9d"/>
+          <rect x="184" y="95" width="18" height="30" rx="9" fill="#ff6b9d"/>
+          <!-- Baguette de chef d'orchestre -->
+          <line x1="190" y1="180" x2="220" y2="140" stroke="#8c5a2f" stroke-width="3" stroke-linecap="round" class="baton"/>
+        </svg>
+      </div>
+      <div class="speech" id="speech">
+        <span id="speechText">Écoute mon rythme !</span>
+      </div>
+    </section>
+
+    <!-- Zone de jeu -->
+    <section class="game-zone">
+
+      <!-- Statut -->
+      <div class="status-bar">
+        <div class="status-item">
+          <span class="status-label">Rythmes réussis</span>
+          <span class="status-value" id="successCount">0</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Essais</span>
+          <span class="status-value" id="attemptCount">0</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Niveau</span>
+          <span class="status-value" id="levelValue">1</span>
+        </div>
+      </div>
+
+      <!-- Zone d'écoute -->
+      <div class="listen-zone" id="listenZone">
+        <button class="btn-listen" id="listenBtn">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <span>Écouter le rythme</span>
+        </button>
+        <p class="listen-hint">Appuie pour entendre le rythme de Milo</p>
+      </div>
+
+      <!-- Cercles de jeu -->
+      <div class="circles-zone">
+        <button class="circle" data-index="0" aria-label="Cercle 1"></button>
+        <button class="circle" data-index="1" aria-label="Cercle 2"></button>
+        <button class="circle" data-index="2" aria-label="Cercle 3"></button>
+        <button class="circle" data-index="3" aria-label="Cercle 4"></button>
+        <button class="circle" data-index="4" aria-label="Cercle 5"></button>
+      </div>
+
+      <p class="circles-hint" id="circlesHint">Écoute d'abord le rythme, puis reproduis-le !</p>
+
+      <!-- Zone de feedback -->
+      <div class="feedback" id="feedback" hidden>
+        <div class="feedback-icon" id="feedbackIcon">✅</div>
+        <p class="feedback-text" id="feedbackText">Bravo !</p>
+      </div>
+
+      <!-- Boutons d'action -->
+      <div class="nav-actions">
+        <button class="btn-action btn-replay" id="replayBtn">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+          </svg>
+          Réécouter
+        </button>
+        <button class="btn-action btn-pause" id="pauseBtn">⏸️ Pause</button>
+        <button class="btn-action btn-stop" id="stopBtn">🛑 Arrêter</button>
+      </div>
+
+    </section>
+
+    <!-- Écran de fin -->
+    <section class="end-screen" id="endScreen" style="display:none;">
+      <div class="end-icon">🎉</div>
+      <h2>Bravo !</h2>
+      <p>Tu as bien joué au Chef d'orchestre !</p>
+      <div class="end-stats">
+        <div class="end-stat">
+          <span class="end-stat-value" id="endSuccess">0</span>
+          <span class="end-stat-label">Rythmes réussis</span>
+        </div>
+        <div class="end-stat">
+          <span class="end-stat-value" id="endAttempts">0</span>
+          <span class="end-stat-label">Essais</span>
+        </div>
+        <div class="end-stat">
+          <span class="end-stat-value" id="endLevel">1</span>
+          <span class="end-stat-label">Niveau atteint</span>
+        </div>
+      </div>
+      <div class="end-actions">
+        <button class="btn-end btn-replay-game" id="replayGameBtn">🔄 Rejouer</button>
+        <button class="btn-end btn-games" id="goGamesBtn">🎮 Retour aux jeux</button>
+        <button class="btn-end btn-home" id="goHomeBtn">🏠 Accueil</button>
+      </div>
+    </section>
+
+    <!-- Pause overlay -->
+    <div class="pause-overlay" id="pauseOverlay" hidden>
+      <div class="pause-box">
+        <div class="pause-icon">⏸️</div>
+        <h2>On fait une pause ?</h2>
+        <p>Prends ton temps. Quand tu es prêt, on continue !</p>
+        <button class="btn-action btn-resume" id="resumeBtn">▶️ Continuer</button>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="jeu-chef-orchestre.js"></script>
+</body>
+</html>

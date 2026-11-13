@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartMusicCare — Accueil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== BACKGROUND ===== -->
+  <div class="stage" aria-hidden="true">
+    <div class="sky"></div>
+    <div class="sun"><div class="sun-rays"></div></div>
+    <svg class="rainbow" viewBox="0 0 800 400" preserveAspectRatio="xMidYMax meet">
+      <path d="M40 400 A360 360 0 0 1 760 400" fill="none" stroke="#ff8fab" stroke-width="20" opacity="0.55"/>
+      <path d="M80 400 A320 320 0 0 1 720 400" fill="none" stroke="#ffb38a" stroke-width="20" opacity="0.55"/>
+      <path d="M120 400 A280 280 0 0 1 680 400" fill="none" stroke="#ffe08a" stroke-width="20" opacity="0.55"/>
+      <path d="M160 400 A240 240 0 0 1 640 400" fill="none" stroke="#a8f0b8" stroke-width="20" opacity="0.55"/>
+      <path d="M200 400 A200 200 0 0 1 600 400" fill="none" stroke="#8be3ff" stroke-width="20" opacity="0.55"/>
+      <path d="M240 400 A160 160 0 0 1 560 400" fill="none" stroke="#c3b5ff" stroke-width="20" opacity="0.55"/>
+    </svg>
+    <svg class="hills" viewBox="0 0 1440 260" preserveAspectRatio="none">
+      <path d="M0 260 L0 180 Q180 90 360 150 T720 130 T1080 160 T1440 120 L1440 260 Z" fill="#a8e6a0" opacity="0.85"/>
+      <path d="M0 260 L0 210 Q240 150 480 200 T960 190 T1440 210 L1440 260 Z" fill="#7ed67a" opacity="0.9"/>
+    </svg>
+    <div class="clouds-layer" id="cloudsLayer"></div>
+    <div class="balloons-layer" id="balloonsLayer"></div>
+    <div class="toys-layer">
+      <div class="toy toy-teddy">🧸</div>
+      <div class="toy toy-doll">🪆</div>
+      <div class="toy toy-robot">🤖</div>
+      <div class="toy toy-duck">🦆</div>
+      <div class="toy toy-rocket">🚀</div>
+      <div class="toy toy-star">⭐</div>
+      <div class="toy toy-ball">⚽</div>
+      <div class="toy toy-kite">🪁</div>
+    </div>
+    <div class="shooting-layer" id="shootingLayer"></div>
+    <div class="confetti-layer" id="confettiLayer"></div>
+    <div class="notes-layer" id="notesLayer"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
+  </div>
+
+  <!-- ===== BOUTON MUSIQUE ===== -->
+  <button class="music-toggle" id="musicToggle" aria-label="Activer ou couper la musique">
+    <svg id="musicIconOn" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+      <path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>
+    </svg>
+    <svg id="musicIconOff" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" style="display:none;">
+      <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+      <line x1="3" y1="3" x2="21" y2="21" stroke="currentColor" stroke-width="2"/>
+    </svg>
+  </button>
+
+  <!-- ===== CONTENU ===== -->
+  <main class="home">
+
+    <!-- BANDEAU PROFIL ACTIF -->
+    <div class="active-profile" id="activeProfile" hidden>
+      <div class="active-profile-inner">
+        <div class="active-profile-info">
+          <span class="active-profile-label">Profil actif</span>
+          <span class="active-profile-id" id="activeProfileId">SMC-2026-0001</span>
+        </div>
+        <div class="active-profile-actions">
+          <button class="btn-mini btn-mini-continue" id="btnContinueProfile">Continuer</button>
+          <button class="btn-mini btn-mini-new" id="btnNewProfile">Nouveau</button>
+        </div>
+      </div>
+    </div>
+
+    <section class="milo-wrap" id="miloWrap">
+      <div class="milo milo-hidden" id="milo">
+        <svg viewBox="0 0 240 260" width="280" height="300" class="milo-svg">
+          <defs>
+            <radialGradient id="furGrad" cx="45%" cy="35%" r="70%">
+              <stop offset="0%"  stop-color="#e0b07a"/>
+              <stop offset="60%" stop-color="#b87d4b"/>
+              <stop offset="100%" stop-color="#8c5a2f"/>
+            </radialGradient>
+            <radialGradient id="earGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"  stop-color="#c98b56"/>
+              <stop offset="100%" stop-color="#8c5a2f"/>
+            </radialGradient>
+            <radialGradient id="innerEarGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"  stop-color="#ffd1dc"/>
+              <stop offset="100%" stop-color="#ff9eb5"/>
+            </radialGradient>
+            <radialGradient id="muzzleGrad" cx="50%" cy="40%" r="60%">
+              <stop offset="0%"  stop-color="#f5deb3"/>
+              <stop offset="100%" stop-color="#e6c894"/>
+            </radialGradient>
+            <radialGradient id="bellyGrad" cx="50%" cy="40%" r="60%">
+              <stop offset="0%"  stop-color="#f5deb3"/>
+              <stop offset="100%" stop-color="#e6c894"/>
+            </radialGradient>
+            <radialGradient id="cheekGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"  stop-color="#ff9db1" stop-opacity="0.85"/>
+              <stop offset="100%" stop-color="#ff9db1" stop-opacity="0"/>
+            </radialGradient>
+            <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+              <feOffset dx="0" dy="5" result="offsetblur"/>
+              <feComponentTransfer><feFuncA type="linear" slope="0.28"/></feComponentTransfer>
+              <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <ellipse cx="120" cy="248" rx="70" ry="10" fill="rgba(31,45,61,0.18)"/>
+          <g class="ear ear-left">
+            <circle cx="62" cy="70" r="32" fill="url(#earGrad)" filter="url(#softShadow)"/>
+            <circle cx="62" cy="70" r="18" fill="url(#innerEarGrad)"/>
+          </g>
+          <g class="ear ear-right">
+            <circle cx="178" cy="70" r="32" fill="url(#earGrad)" filter="url(#softShadow)"/>
+            <circle cx="178" cy="70" r="18" fill="url(#innerEarGrad)"/>
+          </g>
+          <circle cx="120" cy="115" r="78" fill="url(#furGrad)" filter="url(#softShadow)"/>
+          <circle cx="68" cy="140" r="16" fill="url(#cheekGrad)"/>
+          <circle cx="172" cy="140" r="16" fill="url(#cheekGrad)"/>
+          <ellipse cx="120" cy="140" rx="42" ry="32" fill="url(#muzzleGrad)"/>
+          <g class="eyes">
+            <ellipse cx="90" cy="108" rx="10" ry="12" fill="#2c1e12"/>
+            <ellipse cx="150" cy="108" rx="10" ry="12" fill="#2c1e12"/>
+            <circle cx="93" cy="104" r="3.5" fill="#ffffff"/>
+            <circle cx="153" cy="104" r="3.5" fill="#ffffff"/>
+          </g>
+          <ellipse cx="120" cy="132" rx="10" ry="8" fill="#3d2818"/>
+          <ellipse cx="117" cy="129" rx="3" ry="2" fill="#7a5a3a" opacity="0.8"/>
+          <path d="M108 148 Q120 160 132 148" stroke="#3d2818" stroke-width="3.5" fill="none" stroke-linecap="round" class="smile"/>
+          <ellipse cx="120" cy="215" rx="62" ry="42" fill="url(#furGrad)" filter="url(#softShadow)"/>
+          <ellipse cx="120" cy="218" rx="34" ry="26" fill="url(#bellyGrad)"/>
+          <g class="arm arm-left-group">
+            <ellipse cx="62" cy="205" rx="20" ry="16" fill="url(#furGrad)"/>
+          </g>
+          <g class="arm arm-right-group">
+            <ellipse cx="178" cy="205" rx="20" ry="16" fill="url(#furGrad)"/>
+          </g>
+          <path d="M50 100 Q50 50 120 50 Q190 50 190 100" stroke="#ff6b9d" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <rect x="38" y="95" width="18" height="30" rx="9" fill="#ff6b9d"/>
+          <rect x="184" y="95" width="18" height="30" rx="9" fill="#ff6b9d"/>
+          <circle cx="47" cy="110" r="5" fill="#ffd1dc"/>
+          <circle cx="193" cy="110" r="5" fill="#ffd1dc"/>
+        </svg>
+      </div>
+      <div class="speech" id="speech" role="status" aria-live="polite">
+        <span id="speechText">Salut !</span>
+        <button class="speech-replay" id="replayBtn" aria-label="Réécouter">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M12 5V1L7 6l5 5V7c3.3 0 6 2.7 6 6s-2.7 6-6 6-6-2.7-6-6H4c0 4.4 3.6 8 8 8s8-3.6 8-8-3.6-8-8-8z"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <header class="title" id="titleSection">
+      <h1>SmartMusicCare</h1>
+      <p>Joue, écoute et découvre la musique avec Milo</p>
+    </header>
+
+    <nav class="actions" id="actionsSection">
+      <button class="btn btn-play" data-action="start">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <span>Commencer</span>
+      </button>
+
+      <button class="btn btn-child" data-action="child-questionnaire">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+        </svg>
+        <span>Questionnaire enfant</span>
+      </button>
+
+      <button class="btn btn-parent" data-action="parent">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+        </svg>
+        <span>Espace parent / professionnel</span>
+      </button>
+
+      <button class="btn btn-history" data-action="history">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+        </svg>
+        <span>Historique</span>
+      </button>
+
+      <div class="actions-row">
+        <button class="btn btn-ghost" data-action="help">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/>
+          </svg>
+          <span>Aide</span>
+        </button>
+
+        <button class="btn btn-ghost" data-action="settings">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84a.48.48 0 0 0-.48.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 0 0-.59.22L2.74 8.87a.49.49 0 0 0 .12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.48-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.49.49 0 0 0-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+          </svg>
+          <span>Paramètres</span>
+        </button>
+      </div>
+    </nav>
+
+    <footer class="foot" id="footSection">
+      Un outil d'accompagnement — pas un diagnostic médical
+    </footer>
+  </main>
+
+  <!-- ===== MODAL AIDE ===== -->
+  <div class="modal-overlay" id="helpModal" hidden>
+    <div class="modal">
+      <button class="modal-close" data-close-modal>&times;</button>
+      <h2>❓ Aide</h2>
+      <div class="modal-body">
+        <p><strong>Commencer</strong> : choisis un jeu (nécessite les 2 questionnaires).</p>
+        <p><strong>Questionnaire enfant</strong> : Milo pose des questions à l'enfant.</p>
+        <p><strong>Espace parent</strong> : crée le profil de l'enfant.</p>
+        <p><strong>Historique</strong> : voir les parties et évaluations.</p>
+        <p><strong>Musique</strong> : clique sur la note en haut à droite.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL PARAMÈTRES ===== -->
+  <div class="modal-overlay" id="settingsModal" hidden>
+    <div class="modal">
+      <button class="modal-close" data-close-modal>&times;</button>
+      <h2>⚙️ Paramètres</h2>
+      <div class="modal-body">
+        <label class="switch-row">
+          <span>Musique d'ambiance</span>
+          <input type="checkbox" id="settingMusic" checked>
+        </label>
+        <label class="switch-row">
+          <span>Effets sonores (clics)</span>
+          <input type="checkbox" id="settingSfx" checked>
+        </label>
+        <label class="switch-row">
+          <span>Voix de Milo</span>
+          <input type="checkbox" id="settingVoice" checked>
+        </label>
+        <label class="switch-row">
+          <span>Animations</span>
+          <input type="checkbox" id="settingAnim" checked>
+        </label>
+        <p class="modal-note">Les paramètres sont sauvegardés dans ce navigateur.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL SÉLECTION DES JEUX ===== -->
+  <div class="modal-overlay" id="gamesModal" hidden>
+    <div class="modal modal-large">
+      <button class="modal-close" data-close-modal>&times;</button>
+      <h2>🎮 Choisis ton jeu</h2>
+      <p class="modal-subtitle">Tous les questionnaires sont remplis ! À toi de jouer !</p>
+
+      <div class="games-mini-grid">
+        <button class="game-mini" data-game="chef-orchestre">
+          <div class="game-mini-icon">🎼</div>
+          <div class="game-mini-name">Chef d'orchestre</div>
+          <div class="game-mini-desc">Reproduis le rythme</div>
+        </button>
+        <button class="game-mini" data-game="detective">
+          <div class="game-mini-icon">🔍</div>
+          <div class="game-mini-name">Détective musical</div>
+          <div class="game-mini-desc">Trouve le son</div>
+        </button>
+        <button class="game-mini" data-game="dialogue">
+          <div class="game-mini-icon">💬</div>
+          <div class="game-mini-name">Dialogue musical</div>
+          <div class="game-mini-desc">À toi, à moi !</div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL HISTORIQUE ===== -->
+  <div class="modal-overlay" id="historyModal" hidden>
+    <div class="modal modal-large">
+      <button class="modal-close" data-close-modal>&times;</button>
+      <h2>📊 Historique et évaluation</h2>
+      <p class="modal-subtitle" id="historySubtitle">Profil : —</p>
+
+      <div class="history-stats" id="historyStats">
+        <div class="hstat">
+          <span class="hstat-value" id="hGames">0</span>
+          <span class="hstat-label">Parties</span>
+        </div>
+        <div class="hstat">
+          <span class="hstat-value" id="hTime">0 min</span>
+          <span class="hstat-label">Temps</span>
+        </div>
+        <div class="hstat">
+          <span class="hstat-value" id="hLevel">0</span>
+          <span class="hstat-label">Meilleur niveau</span>
+        </div>
+        <div class="hstat">
+          <span class="hstat-value" id="hSuccess">0</span>
+          <span class="hstat-label">Réussites</span>
+        </div>
+      </div>
+
+      <div class="history-detail" id="historyDetail"></div>
+
+      <div class="history-actions">
+        <button class="btn-history-action" id="openFullSuivi">
+          📊 Voir le suivi complet
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL CODE PROFIL ===== -->
+  <div class="modal-overlay" id="codeModal" hidden>
+    <div class="modal">
+      <button class="modal-close" data-close-modal>&times;</button>
+      <h2>🔑 Code du profil</h2>
+      <p class="modal-subtitle">Entre le code de l'enfant pour retrouver son profil.</p>
+
+      <div class="code-input-wrap">
+        <input
+          type="text"
+          id="codeInput"
+          class="code-input"
+          placeholder="SMC-2026-0001"
+          maxlength="20"
+          autocomplete="off"
+        >
+      </div>
+
+      <p class="code-error" id="codeError" hidden></p>
+
+      <div class="code-actions">
+        <button class="btn-code" id="btnLoadCode">📥 Charger le profil</button>
+        <button class="btn-code btn-code-cancel" id="btnCancelCode">Annuler</button>
+      </div>
+
+      <p class="code-hint">
+        💡 Le code est affiché à la fin du questionnaire parent.
+      </p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

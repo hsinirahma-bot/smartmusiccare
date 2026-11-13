@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suivi — SmartMusicCare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="suivi.css" />
+</head>
+<body>
+
+  <div class="stage" aria-hidden="true">
+    <div class="sky"></div>
+    <div class="sun"><div class="sun-rays"></div></div>
+    <div class="clouds-layer" id="cloudsLayer"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+  </div>
+
+  <main class="page">
+
+    <header class="page-header">
+      <button class="btn-back" id="backHome" aria-label="Retour à l'accueil">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+        </svg>
+      </button>
+      <div class="header-text">
+        <h1>📊 Suivi de l'enfant</h1>
+        <p id="profileLabel">Aucun profil actif</p>
+      </div>
+      <button class="btn-export" id="exportBtn" title="Exporter le profil">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+        </svg>
+      </button>
+    </header>
+
+    <section class="no-profile" id="noProfile" hidden>
+      <div class="no-profile-icon">🔒</div>
+      <h2>Aucun profil actif</h2>
+      <p>Créez d'abord un profil avec le questionnaire parent.</p>
+      <button class="btn-go-profile" id="goProfileBtn">📝 Créer un profil</button>
+    </section>
+
+    <div id="mainContent" hidden>
+
+      <!-- ============ CARTES RÉSUMÉ ============ -->
+      <section class="summary-cards">
+        <div class="summary-card">
+          <div class="summary-icon">🎮</div>
+          <div class="summary-value" id="totalGames">0</div>
+          <div class="summary-label">Parties jouées</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon">⏱️</div>
+          <div class="summary-value" id="totalTime">0 min</div>
+          <div class="summary-label">Temps total</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon">🏆</div>
+          <div class="summary-value" id="bestLevel">0</div>
+          <div class="summary-label">Meilleur niveau</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon">✅</div>
+          <div class="summary-value" id="totalSuccess">0</div>
+          <div class="summary-label">Réussites</div>
+        </div>
+      </section>
+
+      <!-- ============ PROFIL DE L'ENFANT ============ -->
+      <section class="card">
+        <h2 class="card-title">
+          <span class="card-emoji">👶</span>
+          Profil de l'enfant
+        </h2>
+
+        <div class="profile-grid">
+          <div class="profile-item">
+            <span class="profile-label">Identifiant</span>
+            <span class="profile-value" id="pId">—</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-label">Âge</span>
+            <span class="profile-value" id="pAge">—</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-label">Diagnostic TSA</span>
+            <span class="profile-value" id="pDiagnosis">—</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-label">Communication</span>
+            <span class="profile-value" id="pCommunication">—</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-label">Autonomie</span>
+            <span class="profile-value" id="pAutonomy">—</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-label">Créé le</span>
+            <span class="profile-value" id="pCreated">—</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ BESOINS ============ -->
+      <section class="card">
+        <h2 class="card-title">
+          <span class="card-emoji">💡</span>
+          Besoins identifiés
+        </h2>
+        <div class="profile-grid">
+          <div class="profile-item">
+            <span class="profile-label">Priorité</span>
+            <span class="profile-value" id="pPriority">—</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-label">Engagement</span>
+            <span class="profile-value" id="pEngagement">—</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-label">Nouvel exercice</span>
+            <span class="profile-value" id="pNewTask">—</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-label">Préférence sociale</span>
+            <span class="profile-value" id="pSocial">—</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-label">Sensibilité auditive</span>
+            <span class="profile-value" id="pSensitivity">—</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-label">Sons forts</span>
+            <span class="profile-value" id="pLoud">—</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PRÉFÉRENCES MUSICALES ============ -->
+      <section class="card">
+        <h2 class="card-title">
+          <span class="card-emoji">🎵</span>
+          Préférences musicales
+        </h2>
+        <div class="tags-group">
+          <div class="tags-row">
+            <span class="tags-label">Type de musique :</span>
+            <div class="tags" id="pMusicTypes"></div>
+          </div>
+          <div class="tags-row">
+            <span class="tags-label">Instruments :</span>
+            <div class="tags" id="pInstruments"></div>
+          </div>
+          <div class="tags-row">
+            <span class="tags-label">Participation :</span>
+            <div class="tags" id="pParticipation"></div>
+          </div>
+          <div class="tags-row">
+            <span class="tags-label">Rythme préféré :</span>
+            <div class="tags" id="pTempo"></div>
+          </div>
+          <div class="tags-row">
+            <span class="tags-label">Sons à éviter :</span>
+            <div class="tags" id="pSoundsToAvoid"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ QUESTIONNAIRE ENFANT (MILO) ============ -->
+      <section class="card" id="childQuestionnaireCard" hidden>
+        <h2 class="card-title">
+          <span class="card-emoji">🧸</span>
+          Réponses de l'enfant (Milo)
+        </h2>
+        <div class="tags-group">
+          <div class="tags-row">
+            <span class="tags-label">Instruments aimés :</span>
+            <div class="tags" id="cLikedInstruments"></div>
+          </div>
+          <div class="tags-row">
+            <span class="tags-label">Instruments non aimés :</span>
+            <div class="tags" id="cDislikedInstruments"></div>
+          </div>
+          <div class="tags-row">
+            <span class="tags-label">Musiques aimées :</span>
+            <div class="tags" id="cLikedMusic"></div>
+          </div>
+          <div class="tags-row">
+            <span class="tags-label">Musiques non aimées :</span>
+            <div class="tags" id="cDislikedMusic"></div>
+          </div>
+          <div class="tags-row">
+            <span class="tags-label">Pauses demandées :</span>
+            <div class="tags" id="cPauses"></div>
+          </div>
+          <div class="tags-row">
+            <span class="tags-label">Refus exprimés :</span>
+            <div class="tags" id="cRefusals"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ OBJECTIFS ============ -->
+      <section class="card">
+        <h2 class="card-title">
+          <span class="card-emoji">🎯</span>
+          Objectifs prioritaires
+        </h2>
+        <div class="tags" id="pGoals"></div>
+        <div class="pro-note" id="pProNote" hidden>
+          <span class="pro-note-label">📝 Observation du professionnel :</span>
+          <p id="pProNoteText"></p>
+        </div>
+      </section>
+
+      <!-- ============ HISTORIQUE DES PARTIES ============ -->
+      <section class="card">
+        <h2 class="card-title">
+          <span class="card-emoji">🎮</span>
+          Historique des parties
+        </h2>
+
+        <div class="history-empty" id="historyEmpty">
+          <p>Aucune partie jouée pour le moment.</p>
+          <button class="btn-go-games" id="goGamesBtn">🎮 Voir les jeux</button>
+        </div>
+
+        <div class="history-list" id="historyList"></div>
+      </section>
+
+      <!-- ============ ACTIONS (dans mainContent) ============ -->
+      <section class="actions-section">
+        <button class="btn-action-outline" id="exportBtn2">
+          ⬇️ Exporter le profil (JSON)
+        </button>
+        <button class="btn-action-outline btn-danger" id="deleteBtn">
+          🗑️ Supprimer le profil
+        </button>
+      </section>
+
+    </div>
+
+    <!-- ============ BOUTON RETOUR TOUJOURS VISIBLE ============ -->
+    <div class="always-back-home">
+      <button class="btn-action-outline btn-home" id="btnBackHome">
+        🏠 Retour à l'accueil
+      </button>
+    </div>
+
+  </main>
+
+  <!-- Modal confirmation suppression -->
+  <div class="modal-overlay" id="deleteModal" hidden>
+    <div class="modal">
+      <h2>⚠️ Supprimer le profil ?</h2>
+      <p>Cette action est irréversible. Toutes les données de l'enfant seront effacées.</p>
+      <div class="modal-actions">
+        <button class="btn-modal btn-cancel" id="cancelDelete">Annuler</button>
+        <button class="btn-modal btn-confirm" id="confirmDelete">Oui, supprimer</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="suivi.js"></script>
+</body>
+</html>
